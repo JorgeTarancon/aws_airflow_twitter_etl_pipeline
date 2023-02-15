@@ -1,14 +1,14 @@
 ###### LIBRARIES ######
 import configparser
-import tweepy
 from processors import twitter_processor
 ###### LIBRARIES ######
+
+__author__ = 'Jorge Tarancon Rey'
 
 ###### CONFIG ######
 config = configparser.ConfigParser()
 config.read('config.ini')
 ###### CONFIG ######
-
 
 # Initiate Twitter Processor with personal credentials
 tp = twitter_processor.Twitter_Processor(config=config)

@@ -1,8 +1,9 @@
 ###### LIBRARIES ######
 import tweepy
 import pandas as pd
-import json
 ###### LIBRARIES ######
+
+__author__ = 'Jorge Tarancon Rey'
 
 class Twitter_Processor:
     def __init__(self,config):
