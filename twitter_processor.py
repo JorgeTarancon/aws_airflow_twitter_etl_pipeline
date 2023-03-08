@@ -1,12 +1,17 @@
 ###### LIBRARIES ######
 import tweepy
 import pandas as pd
+import configparser
 ###### LIBRARIES ######
 
 __author__ = 'Jorge Tarancon Rey'
 
-class Twitter_Processor:
-    def __init__(self,config):
+class TwitterProcessor:
+
+    def __init__(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+
         # Read required credentials
         self.api_key = config.get('TWITTER','API_KEY')
         self.api_secret_key = config.get('TWITTER','API_SECRET_KEY')
@@ -32,4 +37,13 @@ class Twitter_Processor:
 
     def cast_tweets_to_dataframe(self,tweets:dict) -> pd.DataFrame:
         return pd.DataFrame.from_dict(data=tweets['data'],orient='columns',columns=None)
+
+    def run_twitter_etl(self):
+        self.creating_twitter_api()
+
+        tweets = self.extract_tweets()
+
+        tweets_df = self.cast_tweets_to_dataframe(tweets)
         
+        #tweets_df.to_csv(path_or_buf='s3://bucket-twitter/tweets.csv', sep=';', index=False, ecndoing='latin-1')
+        print(tweets_df)
