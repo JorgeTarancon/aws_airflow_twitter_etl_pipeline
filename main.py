@@ -1,24 +1,8 @@
 ###### LIBRARIES ######
-import configparser
-from processors import twitter_processor
+from twitter_processor import TwitterProcessor
 ###### LIBRARIES ######
 
 __author__ = 'Jorge Tarancon Rey'
 
-###### CONFIG ######
-config = configparser.ConfigParser()
-config.read('config.ini')
-###### CONFIG ######
-
-# Initiate Twitter Processor with personal credentials
-tp = twitter_processor.Twitter_Processor(config=config)
-
-# Create an API object
-tp.creating_twitter_api()
-
-# Extracting Tweets
-tweets = tp.extract_tweets()
-
-# Converting the tweets in a pandas DataFrame
-tweets_df = tp.cast_tweets_to_dataframe(tweets=tweets)
-print(tweets_df)
+tp = TwitterProcessor()
+tp.run_twitter_etl()
