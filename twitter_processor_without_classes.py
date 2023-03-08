@@ -31,7 +31,6 @@ def extract_tweets(client):
     return client.get_users_tweets(
                                     id=client.get_user(username='elonmusk')['data']['id'],
                                     max_results=20)
-    #return self.client.get_home_timeline(max_results=2)
 
 def cast_tweets_to_dataframe(tweets:dict) -> pd.DataFrame:
     return pd.DataFrame.from_dict(data=tweets['data'],orient='columns',columns=None)
